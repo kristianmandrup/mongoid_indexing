@@ -1,7 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'spec_helper'
 
 describe "MongoidIndexing" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
-  end
+  pending 'Tested in another project  - no specs for now :P'
 end

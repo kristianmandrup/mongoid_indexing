@@ -1,5 +1,7 @@
 require 'spec_helper'
 
-describe "MongoidIndexing" do
-  pending 'Tested in another project  - no specs for now :P'
+describe Mongoid::Indexing do
+  it 'should be loaded' do
+    expect(Mongoid::Indexing).to_not be_nil
+  end
 end

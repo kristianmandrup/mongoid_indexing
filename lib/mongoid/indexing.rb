@@ -38,10 +38,10 @@ module Mongoid
       end
 
       def rails_models_paths
-        engines_models_paths = Rails.application.railties.engines.map do |engine|
+        engines_models_paths = ::Rails.application.railties.engines.map do |engine|
           engine.paths["app/models"].expanded
         end
-        root_models_paths = Rails.application.paths["app/models"]
+        root_models_paths = ::Rails.application.paths["app/models"]
         engines_models_paths.push(root_models_paths).flatten
       end 
 

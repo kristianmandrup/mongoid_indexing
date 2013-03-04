@@ -12,33 +12,26 @@ module Mongoid
       end
 
       def log?
-        @logging
+        @logging ||= false
       end
 
       def create_indexes models_paths = nil
-        models_paths ||= rails_models_paths
-
-        raise ArgumentError, "No model paths for creating mongoid indexes" if models_paths.blank?
-        message "CREATE INDEXES: #{models_paths}"
+        message "creating mongoid indexes..."
+        models_paths = rails_models_paths if models_paths == :rails
 
         load_models_from_paths models_paths
 
-        models_paths.each do |path|
-          ::Rails::Mongoid.create_indexes 
-        end
+        ::Rails::Mongoid.create_indexes
       end
 
       def remove_indexes models_paths = nil
-        models_paths ||= rails_models_paths
+        message "removing mongoid indexes..."
 
-        raise ArgumentError, "No model paths for creating mongoid indexes" if models_paths.blank?
-        message "REMOVING INDEXES: #{models_paths}"
+        models_paths = rails_models_paths if models_paths == :rails
 
         load_models_from_paths models_paths
 
-        models_paths.each do |path|
-          ::Rails::Mongoid.remove_indexes 
-        end
+        ::Rails::Mongoid.remove_indexes 
       end
 
       def load_models_from_paths *models_paths

@@ -21,8 +21,10 @@ module Mongoid
         raise ArgumentError, "No model paths for creating mongoid indexes" if models_paths.blank?
         message "CREATE INDEXES: #{models_paths}"
 
+        load_models_from_paths models_paths
+
         models_paths.each do |path|
-          ::Rails::Mongoid.create_indexes("#{path}/**/*.rb")
+          ::Rails::Mongoid.create_indexes 
         end
       end
 
@@ -32,8 +34,16 @@ module Mongoid
         raise ArgumentError, "No model paths for creating mongoid indexes" if models_paths.blank?
         message "REMOVING INDEXES: #{models_paths}"
 
+        load_models_from_paths models_paths
+
         models_paths.each do |path|
-          ::Rails::Mongoid.remove_indexes("#{path}/**/*.rb")
+          ::Rails::Mongoid.remove_indexes 
+        end
+      end
+
+      def load_models_from_paths *models_paths
+        [models_paths].flatten.compact.each do |path|
+          require "#{path}/**/*.rb" unless path.blank?
         end
       end
 

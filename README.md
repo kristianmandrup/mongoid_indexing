@@ -14,6 +14,12 @@ Programmatic access to index creation and removal is useful in project where you
 
 Scenario: Using Mongoid Geospatial to create geo positions for properties. For geo searches to work, you need to create 2d indexes!
 
+Updated to work with:
+
+https://github.com/mongoid/mongoid/blob/master/lib/rails/mongoid.rb
+
+(Since March 2013)
+
 ```ruby
 # RANDOM PROPERTIES
 describe Property do

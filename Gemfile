@@ -1,6 +1,8 @@
 source "http://rubygems.org"
 
-gem 'mongoid'
+gem 'mongoid',  '>= 3'
+gem 'moped',    '>= 1.4'
+gem 'rails',    '>= 3.1'
 
 group :development do
   gem "rspec",    ">= 2.8.0"
